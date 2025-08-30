@@ -10,57 +10,50 @@ get("/goodbye") do
   erb(:bye)
 end
 
-get("/square/new") do
-  erb(:new_square_calc)
+get("/add") do
+  erb(:new_add)
 end
 
- get("/square/results") do
-   pp params    # look in your terminal for what keys are present
-   @the_square_num    = params.fetch("users_number").to_f
-   @the_square_result = @the_square_num ** 2
+ get("/add/results") do
+   @the_add_num1    = params.fetch("user_add1").to_f
+   @the_add_num2    = params.fetch("user_add2").to_f
+   @the_add_result = @the_add_num1 + @the_add_num2
 
-   erb(:square_results)
+   erb(:add_results)
  end
 
-get("/square_root/new") do
-  erb(:new_square_root_calc)
+get("/subtract") do
+  erb(:new_subtract)
 end
 
-get("/square_root/results") do
-  @the_square_root_num = params.fetch("user_number").to_f
+get("/subtract/results") do
+  @the_subtract_num1 = params.fetch("user_subtract1").to_f
+  @the_subtract_num2 = params.fetch("user_subtract2").to_f
+  @the_subtract_result = @the_subtract_num1 - @the_subtract_num2
 
-  @the_square_root_result = @the_square_root_num ** 0.5
-
-  erb(:square_root_results)
+  erb(:subtract_results)
 end
 
-get("/random/new") do
-  erb(:new_random)
+get("/multiply") do
+  erb(:new_multiply)
 end
 
-get("/random/results") do
-  @the_minimum = params.fetch("user_min").to_f
-  @the_maximum = params.fetch("user_max").to_f
-  @the_random_number = rand(@the_minimum..@the_maximum)
-  erb(:random_results)
+get("/multiply/results") do
+  @the_multiply_num1 = params.fetch("user_multiply1").to_f
+  @the_multiply_num2 = params.fetch("user_multiply2").to_f
+  @the_multiply_result = @the_multiply_num1 * @the_multiply_num2
+  erb(:multiply_results)
 end
 
-get("/payment/new") do
-  erb(:new_payment)
+get("/divide") do
+  erb(:new_divide)
 end
 
-get("/payment/results") do
-  @the_apr       = params.fetch("user_apr").to_f
-  @the_apr_month = @the_apr / 100 / 12
-  @the_years     = params.fetch("user_years").to_f
-  @the_months    = @the_years * 12
-  @the_principal = params.fetch("user_pv").to_f
-
-  numerator   = @the_apr_month * @the_principal
-  denominator = 1 - (1 + @the_apr_month) ** (-@the_months)
-  @the_payment = numerator / denominator
-
-  erb(:payment_results)
+get("/divide/results") do
+  @the_divide_num1 = params.fetch("user_divide1").to_f
+  @the_divide_num2 = params.fetch("user_divide2").to_f
+  @the_divide_result = @the_divide_num1 / @the_divide_num2
+  erb(:divide_results)
 end
 
 
